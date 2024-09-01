@@ -115,7 +115,8 @@ class LoggerChatModel:
 class GPTAnswerer:
     def __init__(self, openai_api_key):
         self.llm_cheap = LoggerChatModel(
-            ChatOpenAI(model_name="gpt-4o-mini", openai_api_key=openai_api_key, temperature=0.4)
+            # ChatOpenAI(model_name="gpt-4o-mini", openai_api_key=openai_api_key, temperature=0.4)
+            ChatOpenAI(model_name="chatgpt-4o-latest", openai_api_key=openai_api_key, temperature=0.4)
         )
     @property
     def job_description(self):
