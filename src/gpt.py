@@ -200,7 +200,8 @@ class GPTAnswerer:
 
     def set_job(self, job):
         self.job = job
-        self.job.set_summarize_job_description(self.summarize_job_description(self.job.description))
+        # as I don't find any need to summarize the job description I'm commenting this line
+        # self.job.set_summarize_job_description(self.summarize_job_description(self.job.description))
 
     def set_job_application_profile(self, job_application_profile):
         self.job_application_profile = job_application_profile
@@ -326,7 +327,11 @@ class GPTAnswerer:
         prompt = ChatPromptTemplate.from_template(section_prompt)
         chain = prompt | self.llm_cheap | StrOutputParser()
         output = chain.invoke({"question": question})
-        section_name = output.lower().replace(" ", "_")
+        match = re.search(r"(Personal information|Self Identification|Legal Authorization|Work Preferences|Education Details|Experience Details|Projects|Availability|Salary Expectations|Certifications|Languages|Interests|Cover letter)", output, re.IGNORECASE)
+        if not match:
+            raise ValueError("Could not extract section name from the response.")
+
+        section_name = match.group(1).lower().replace(" ", "_")
         if section_name == "cover_letter":
             chain = chains.get(section_name)
             output = chain.invoke({"resume": self.resume, "job_description": self.job_description})
