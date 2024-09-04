@@ -12,5 +12,5 @@ generated_cv*
 chrome_profile
 answers.json
 *.pdf
-data_folder/output/
 virtual/
+data_folder
