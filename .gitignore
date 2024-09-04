@@ -11,3 +11,6 @@ generated_cv*
 .vscode
 chrome_profile
 answers.json
+*.pdf
+data_folder/output/
+virtual/
