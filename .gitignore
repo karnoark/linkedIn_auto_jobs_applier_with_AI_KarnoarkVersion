@@ -13,4 +13,4 @@ chrome_profile
 answers.json
 *.pdf
 virtual/
-data_folder
+data_folder/*
