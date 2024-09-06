@@ -200,7 +200,8 @@ class GPTAnswerer:
 
     def set_job(self, job):
         self.job = job
-        self.job.set_summarize_job_description(self.summarize_job_description(self.job.description))
+        # as I don't find any need to summarize the job description I'm commenting this line
+        # self.job.set_summarize_job_description(self.summarize_job_description(self.job.description))
 
     def set_job_application_profile(self, job_application_profile):
         self.job_application_profile = job_application_profile
