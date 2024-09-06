@@ -26,13 +26,11 @@ date:
 positions:
   - React Developer
   - NodeJS Developer
-  - JavaScript
-
 
 locations:
   - India
 
-applyOnceAtCompany: true
+applyOnceAtCompany: false
 
 distance: 100
 

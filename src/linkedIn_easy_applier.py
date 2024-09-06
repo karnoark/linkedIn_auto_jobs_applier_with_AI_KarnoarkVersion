@@ -265,20 +265,35 @@ class LinkedInEasyApplier:
         text_fields = section.find_elements(By.TAG_NAME, 'input') + section.find_elements(By.TAG_NAME, 'textarea')
         if text_fields:
             text_field = text_fields[0]
-            question_text = section.find_element(By.TAG_NAME, 'label').text.lower()
             is_numeric = self._is_numeric_field(text_field)
+            question_text = section.find_element(By.TAG_NAME, 'label').text.lower()
+            
+            # Check if question text contains terms like 'salary' or 'ctc'
+            if 'salary' in question_text or 'ctc' in question_text:
+                # Append the line "select either 8 or 10" to the question text
+                question_text += "\nselect either 8 or 10"
+
+            # Set the question type based on whether the field is numeric
+            question_type = 'numeric' if is_numeric else 'textbox'
+            
+            # Initialize the existing_answer variable
+            existing_answer = None
+            
+            # Search for an existing answer in all_data by matching question and question_type
+            for item in self.all_data:
+                if item['question'] == self._sanitize_text(question_text) and item['type'] == question_type:
+                    existing_answer = item
+                    break
+
+            # If an existing answer is found, use it to fill the text field
+            if existing_answer:
+                self._enter_text(text_field, existing_answer['answer'])
+                return True
+            
             if is_numeric:
-                question_type = 'numeric'
                 answer = self.gpt_answerer.answer_question_numeric(question_text)
             else:
-                question_type = 'textbox'
                 answer = self.gpt_answerer.answer_question_textual_wide_range(question_text)
-            existing_answer = None
-            for item in self.all_data:
-                if 'cover' not in item['question'] and item['question'] == self._sanitize_text(question_text) and item['type'] == question_type:
-                    existing_answer = item
-                    self._enter_text(text_field, existing_answer['answer'])
-                    return True
             self._save_questions_to_json({'type': question_type, 'question': question_text, 'answer': answer})
             self._enter_text(text_field, answer)
             return True
@@ -289,15 +304,14 @@ class LinkedInEasyApplier:
         if date_fields:
             date_field = date_fields[0]
             question_text = section.text.lower()
-            answer_date = self.gpt_answerer.answer_question_date()
-            answer_text = answer_date.strftime("%Y-%m-%d")
-
             existing_answer = None
             for item in self.all_data:
                 if  self._sanitize_text(question_text) in item['question'] and item['type'] == 'date':
                     existing_answer = item
                     self._enter_text(date_field, existing_answer['answer'])
                     return True
+            answer_date = self.gpt_answerer.answer_question_date()
+            answer_text = answer_date.strftime("%Y-%m-%d")
 
             self._save_questions_to_json({'type': 'date', 'question': question_text, 'answer': answer_text})
             self._enter_text(date_field, answer_text)
@@ -361,9 +375,15 @@ class LinkedInEasyApplier:
                         data = []
             except FileNotFoundError:
                 data = []
-            data.append(question_data)
-            with open(output_file, 'w') as f:
-                json.dump(data, f, indent=4)
+            
+            # Check for duplicates
+            existing_question = next((item for item in data                       
+                                      if item['question'] == question_data['question'] and item['type'] == question_data['type']), None)
+        
+            if existing_question is None:
+                data.append(question_data)
+                with open(output_file, 'w') as f:
+                    json.dump(data, f, indent=4)
         except Exception:
             tb_str = traceback.format_exc()
             raise Exception(f"Error saving questions data to JSON file: \nTraceback:\n{tb_str}")

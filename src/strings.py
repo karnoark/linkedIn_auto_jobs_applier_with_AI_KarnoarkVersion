@@ -264,63 +264,54 @@ Please write the cover letter in a way that directly addresses the job role and 
 numeric_question_template = """
 Read the following resume carefully and answer the specific questions regarding the candidate's experience with a number of years. Follow these strategic guidelines when responding:
 
-1. **Related and Inferred Experience:**
-   - **Similar Technologies:** If experience with a specific technology is not explicitly stated, but the candidate has experience with similar or related technologies, provide a plausible number of years reflecting this related experience. For instance, if the candidate has experience with Python and projects involving technologies similar to Java, estimate a reasonable number of years for Java.
-   - **Projects and Studies:** Examine the candidate’s projects and studies to infer skills not explicitly mentioned. Complex and advanced projects often indicate deeper expertise.
+1. **Professional Experience Only**:
+   Focus on professional experience gained through formal employment or contracted roles. Do not include personal projects, academic work, or informal experience.
+   Explicitly Stated Technologies: Consider only the technologies explicitly mentioned in the candidate's professional experience. Avoid inferring experience from similar technologies unless explicitly listed under professional roles.
 
-2. **Indirect Experience and Academic Background:**
-   - **Type of University and Studies:** Consider the type of university and course followed.
-   - **Exam Grades:** Consider exam grades achieved. High grades in relevant subjects can indicate stronger proficiency and understanding.
-   - **Relevant thesis:** Consider the thesis of the candidate has worked. Advanced projects suggest deeper skills.
-   - **Roles and Responsibilities:** Evaluate the roles and responsibilities held to estimate experience with specific technologies or skills.
+2. **Experience Calculation Rules**:
+   Maximum of 2 Years for Mentioned Skills: For each skill explicitly stated in a professional capacity, provide at max "2" years if relevant, but do not count any experience beyond formal job roles.
 
-
-3. **Experience Estimates:**
-   - **No Zero Experience:** A response of "0" is absolutely forbidden. If direct experience cannot be confirmed, provide a minimum of "2" years based on inferred or related experience.
-   - **For Low Experience (up to 5 years):** Estimate experience based on inferred bacherol, skills and projects, always providing at least "2" years when relevant.
-   - **For High Experience:** For high levels of experience, provide a number based on clear evidence from the resume. Avoid making inferences for high experience levels unless the evidence is strong.
+3. **Current and Expected Salary**: 
+   For questions related to salary, current CTC, or expected CTC (regardless of phrasing), provide the numerical value stated or inferred from the resume.
 
 4. **Rules:**
-   - Answer the question directly with a number, avoiding "0" entirely.
+   - Provide a number reflecting professional experience only, or respond with "0" if not mentioned.
 
 ## Example 1
 ```
 ## Curriculum
 
-I had a degree in computer science. I have worked  years with  MQTT protocol.
+I had a degree in computer science. I have worked on an AI project for 1 year. I have worked for 2 years on javascript in my previous role
 
 ## Question
 
-How many years of experience do you have with IoT?
+How many years of experience do you have with typescript?
 
 ## Answer
 
-4
+0
 ```
 ## Example 1
 ```
-## Curriculum
-
-I had a degree in computer science. 
 
 ## Question
 
-How many years of experience do you have with Bash?
+what's your ECTC(Expected CTC)
 
 ## Answer
 
-2
+10
 ```
 
 ## Example 2
 ```
 ## Curriculum
 
-I am a software engineer with 5 years of experience in Swift and Python. I have worked on an AI project.
+I have worked in html, css for 2 years.
 
 ## Question
 
-How many years of experience do you have with AI?
+How many years of experience do you have with front-end?
 
 ## Answer
 
@@ -338,8 +329,6 @@ How many years of experience do you have with AI?
 {question}
 
 ---
-
-When responding, consider all available information, including projects, work experience, and academic background, to provide an accurate and well-reasoned answer. Make every effort to infer relevant experience and avoid defaulting to 0 if any related experience can be estimated.
 
 """
 
