@@ -307,11 +307,11 @@ what's your ECTC(Expected CTC)
 ```
 ## Curriculum
 
-I have worked in html, css for 2 years.
+I have worked in html, css & React for 2 years.
 
 ## Question
 
-How many years of experience do you have with front-end?
+How many years of experience do you have with front-end & webpack?
 
 ## Answer
 
