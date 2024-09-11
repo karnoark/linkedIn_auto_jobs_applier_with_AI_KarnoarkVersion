@@ -34,9 +34,11 @@ experience_details:
       - responsibility_5: "Ensured code quality and maintainability by implementing TDD methodologies and developing and executing unit tests."
       - responsibility_6: "Implemented performance optimizations to reduce page load times and enhance overall application speed and responsiveness. Utilized Redux for efficient state management."
       - responsibility_7: "Designed and implemented a scalable, high-performance Node.js API to improve the overall speed and reliability of the company’s web application."
-    Current CTC or Salary: " My current CTC(cost to company) is 8 lakhs per annum. " 
-    Expected CTC or Salary: " My Expected CTC(cost to company) is 10 lakhs per annum. " 
-    Experience in years: "I have experience of 2 years in JavaScript, React, Redux, React Testing Library, Node.js, MongoDB, PostgreSQL. "
+      - Current CTC or Salary: " My current CTC(cost to company) is 8 lakhs per annum. " 
+      - Expected CTC or Salary: " My Expected CTC(cost to company) is 10 lakhs per annum. " 
+      - Experience in years: "I have experience of 2 years in JavaScript, React, Redux, React Testing Library, Node.js, MongoDB, PostgreSQL. "
+      - Expected Location: "willing to locate anywhere"
+      - Notice Peiord: "0 days, I can join immediately"
     skills_acquired:
       - "React"
       - "Node.js"
@@ -86,7 +88,7 @@ availability:
   notice_period: "immediately"
 
 salary_expectations:
-  salary_range_usd: "1000-100000"
+  salary_range_usd: "1000-10000"
 
 self_identification:
   gender: "Male"

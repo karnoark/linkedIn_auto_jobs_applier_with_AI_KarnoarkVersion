@@ -24,8 +24,7 @@ date:
   24 hours: true
 
 positions:
-  - React Developer
-  - NodeJS Developer
+  - React
 
 locations:
   - India
@@ -37,6 +36,12 @@ distance: 100
 companyBlacklist:
   - Capgemini
   - Truelancer.com
+  - Finding Candidate
+  - Timely Find
+  - PyjamaHR
+  - Breezy Talent
+  - Find Next Hire
+  - Tata Consultancy Services
 
 titleBlacklist:
   - Data Science
@@ -52,6 +57,6 @@ titleBlacklist:
   - Wordpress
   
 llm_model_type: openai
-llm_model: llama3-8b-8192 
+llm_model: llama3-70b-8192 
 llm_api_url: "https://api.groq.com/openai/v1"
 
